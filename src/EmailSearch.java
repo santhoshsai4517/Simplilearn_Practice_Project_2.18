@@ -1,15 +1,14 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class EmailSearch {
     public static void main(String[] args) {
-        String[] emailIds = {
-                "employee1@example.com",
-                "employee2@example.com",
-                "employee3@example.com",
-                "employee4@example.com",
-                "employee5@example.com"
-        };
+        ArrayList<String> emailIds = new ArrayList<>();
+        emailIds.add("employee1@example.com");
+        emailIds.add("employee2@example.com");
+        emailIds.add("employee3@example.com");
+        emailIds.add("employee4@example.com");
+        emailIds.add("employee5@example.com");
 
         Scanner scanner = new Scanner(System.in);
         String searchEmail;
@@ -19,20 +18,14 @@ public class EmailSearch {
             searchEmail = scanner.nextLine();
 
             if (searchEmail.equalsIgnoreCase("q")) {
+            	scanner.close();
                 break;
             }
 
             boolean isValid = isValidEmail(searchEmail);
 
             if (isValid) {
-                boolean found = false;
-
-                for (String emailId : emailIds) {
-                    if (emailId.equals(searchEmail)) {
-                        found = true;
-                        break;
-                    }
-                }
+                boolean found = emailIds.contains(searchEmail);
 
                 if (found) {
                     System.out.println("Email ID found!");
