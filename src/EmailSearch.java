@@ -12,28 +12,36 @@ public class EmailSearch {
         };
 
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the email ID to search: ");
-        String searchEmail = scanner.nextLine();
+        String searchEmail;
 
-        boolean isValid = isValidEmail(searchEmail);
+        while (true) {
+            System.out.print("Enter the email ID to search (press 'q' to quit): ");
+            searchEmail = scanner.nextLine();
 
-        if (isValid) {
-            boolean found = false;
+            if (searchEmail.equalsIgnoreCase("q")) {
+                break;
+            }
 
-            for (String emailId : emailIds) {
-                if (emailId.equals(searchEmail)) {
-                    found = true;
-                    break;
+            boolean isValid = isValidEmail(searchEmail);
+
+            if (isValid) {
+                boolean found = false;
+
+                for (String emailId : emailIds) {
+                    if (emailId.equals(searchEmail)) {
+                        found = true;
+                        break;
+                    }
                 }
-            }
 
-            if (found) {
-                System.out.println("Email ID found!");
+                if (found) {
+                    System.out.println("Email ID found!");
+                } else {
+                    System.out.println("Email ID not found!");
+                }
             } else {
-                System.out.println("Email ID not found!");
+                System.out.println("Invalid email format!");
             }
-        } else {
-            System.out.println("Invalid email format!");
         }
     }
 
