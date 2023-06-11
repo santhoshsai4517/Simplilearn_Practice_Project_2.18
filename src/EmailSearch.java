@@ -15,19 +15,30 @@ public class EmailSearch {
         System.out.print("Enter the email ID to search: ");
         String searchEmail = scanner.nextLine();
 
-        boolean found = false;
+        boolean isValid = isValidEmail(searchEmail);
 
-        for (String emailId : emailIds) {
-            if (emailId.equals(searchEmail)) {
-                found = true;
-                break;
+        if (isValid) {
+            boolean found = false;
+
+            for (String emailId : emailIds) {
+                if (emailId.equals(searchEmail)) {
+                    found = true;
+                    break;
+                }
             }
-        }
 
-        if (found) {
-            System.out.println("Email ID found!");
+            if (found) {
+                System.out.println("Email ID found!");
+            } else {
+                System.out.println("Email ID not found!");
+            }
         } else {
-            System.out.println("Email ID not found!");
+            System.out.println("Invalid email format!");
         }
+    }
+
+    private static boolean isValidEmail(String email) {
+        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        return email.matches(regex);
     }
 }
